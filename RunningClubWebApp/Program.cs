@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using RunningClubWebApp.Data.DataBaseContext;
+
 namespace RunningClubWebApp
 {
     public class Program
@@ -8,6 +11,22 @@ namespace RunningClubWebApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            #region DbContext
+
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+
+            #endregion
+
+
+
+
+
+
+
 
             var app = builder.Build();
 
